@@ -1,0 +1,28 @@
+[
+  {
+    "model": "raterapi.game",
+    "pk":1,
+    "fields": {
+      "title": "The Legend of Zelda: Breath of the Wild",
+      "year_released": 2017,
+      "designer": "Nintendo EPD",
+      "number_of_players": 1,
+      "time_to_play": 60,
+      "age_recommendation": 10,
+      "categories": [1,6]
+    }
+  },
+  {
+    "model": "raterapi.game",
+    "pk": 2,
+    "fields": {
+      "title": "Skyrim",
+      "year_released": 2011,
+      "designer": "Bethesda Game Studios",
+      "number_of_players": 1,
+      "time_to_play": 500,
+      "age_recommendation": 10,
+      "categories": [6]
+    }
+  }
+]

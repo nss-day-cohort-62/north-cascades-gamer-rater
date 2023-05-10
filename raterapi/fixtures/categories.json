@@ -1,0 +1,44 @@
+[
+  {
+    "model": "raterapi.category",
+    "pk": 1,
+    "fields": {
+      "description": "Strategy" 
+    }
+  },
+  {
+    "model": "raterapi.category",
+    "pk": 2,
+    "fields": {
+      "description": "Dice" 
+    }
+  },
+  {
+    "model": "raterapi.category",
+    "pk": 3,
+    "fields": {
+      "description": "Card" 
+    }
+  },
+  {
+    "model": "raterapi.category",
+    "pk": 4,
+    "fields": {
+      "description": "Miniature" 
+    }
+  },
+  {
+    "model": "raterapi.category",
+    "pk": 5,
+    "fields": {
+      "description": "Deck Building" 
+    }
+  },
+  {
+    "model": "raterapi.category",
+    "pk": 6,
+    "fields": {
+      "description": "Role Playing" 
+    }
+  }
+]
