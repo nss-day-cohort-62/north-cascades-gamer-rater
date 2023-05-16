@@ -17,10 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from raterapi.views import GameView
-from raterapi.views import ReviewView
-from raterapi.views import CategoryView
-from raterapi.views import ImageView
+from raterapi.views import GameView, ReviewView, CategoryView, ImageView
 
 
 router = routers.DefaultRouter(trailing_slash=False)

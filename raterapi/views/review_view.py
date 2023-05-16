@@ -12,6 +12,11 @@ class ReviewView(ViewSet):
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data)
 
+    def retrieve(self, request, pk):
+        review = Review.objects.get(pk=pk)
+        serializer = ReviewSerializer(review)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
