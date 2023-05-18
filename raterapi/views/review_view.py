@@ -3,7 +3,7 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from raterapi.models import Review
+from raterapi.models import Review, Game, Player
 
 
 class ReviewView(ViewSet):
@@ -16,6 +16,19 @@ class ReviewView(ViewSet):
         review = Review.objects.get(pk=pk)
         serializer = ReviewSerializer(review)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def create(self, request):
+        game = Game.objects.get(pk=request.data['game'])
+        player = Player.objects.get(user=request.auth.user)
+        review = Review.objects.create(
+            description=request.data['description'],
+            rating=request.data['rating'],
+            player=player,
+            game=game
+        )
+
+        serializer = ReviewSerializer(review)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class ReviewSerializer(serializers.ModelSerializer):
