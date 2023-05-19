@@ -29,6 +29,19 @@ class ReviewView(ViewSet):
 
         serializer = ReviewSerializer(review)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    def update(self, request, pk):
+        game = Game.objects.get(pk=request.data['game'])
+        player = Player.objects.get(user=request.auth.user)
+        review = Review.objects.get(pk=pk)
+        review.description = request.data['description']
+        review.rating = request.data['rating']
+        review.player = player
+        review.game = game
+        review.save()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+
 
 
 class ReviewSerializer(serializers.ModelSerializer):
