@@ -39,6 +39,11 @@ class ImageView(ViewSet):
         image.save()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
+    def destroy(self, request, pk):
+        image = Image.objects.get(pk=pk)
+        image.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
 
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:

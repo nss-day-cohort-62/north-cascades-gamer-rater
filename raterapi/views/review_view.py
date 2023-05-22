@@ -1,5 +1,4 @@
 """View module for handling requests for customer data"""
-from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
@@ -29,7 +28,7 @@ class ReviewView(ViewSet):
 
         serializer = ReviewSerializer(review)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
+
     def update(self, request, pk):
         game = Game.objects.get(pk=request.data['game'])
         player = Player.objects.get(user=request.auth.user)
@@ -41,7 +40,11 @@ class ReviewView(ViewSet):
         review.save()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
+    def destroy(self, request, pk):
+        review = Review.objects.get(pk=pk)
+        review.delete()
 
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
 
 
 class ReviewSerializer(serializers.ModelSerializer):
