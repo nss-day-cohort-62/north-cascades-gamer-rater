@@ -8,6 +8,10 @@ from raterapi.models import Review, Game, Player
 class ReviewView(ViewSet):
     def list(self, request):
         reviews = Review.objects.all()
+
+        if request.query_params.get('game'):
+            reviews = reviews.filter(game_id=request.query_params['game'])
+
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data)
 

@@ -8,6 +8,10 @@ from raterapi.models import Game
 class GameView(ViewSet):
     def list(self, request):
         games = Game.objects.all()
+
+        if request.query_params.get('category'):
+            games = games.filter(categories=request.query_params['category'])
+
         serializer = GameSerializer(games, many=True)
         return Response(serializer.data)
 
@@ -43,7 +47,7 @@ class GameView(ViewSet):
         game.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
-    
+
     def destroy(self, request, pk):
         game = Game.objects.get(pk=pk)
         game.delete()
